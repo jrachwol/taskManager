@@ -1,0 +1,82 @@
+{% extends "AppBundle:Template:navbar.html.twig" %}
+
+{% block bodyContent %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Najnowsze Artykuły</h1>
+        </div>
+    </div>
+</div>
+    <section id="article">
+        <div class='wrapper-flip' id='grid'>
+            {% block articleContent %}
+            {% endblock %}
+            <div class='fillers'>
+                <div class="flipper filler">
+                    <div class="card">
+                        <div class="front card_face seven">
+                            <h2></h2>
+                        </div>
+                        <div class="back card_face seven">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flipper filler">
+                    <div class="card">
+                        <div class="front card_face eight">
+                            <h2></h2>
+                        </div>
+                        <div class="back card_face eight">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flipper filler">
+                    <div class="card">
+                        <div class="front card_face nine">
+                            <h2></h2>
+                        </div>
+                        <div class="back card_face nine">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flipper filler">
+                    <div class="card">
+                        <div class="front card_face ten">
+                            <h2></h2>
+                        </div>
+                        <div class="back card_face ten">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4">
+            <a id="new-article" class="btn btn-primary btn-lg" href="{{ path('wiki_add_article') }}" data-toggle="modal" data-target="#addArticle" >Dodaj Artykuł</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="addArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="showArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+{% endblock %}

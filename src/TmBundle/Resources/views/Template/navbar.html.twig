@@ -1,0 +1,58 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block body %}
+    <body class="{{ styles.theme }}">
+{% endblock %}
+
+{% block headerContainer %}
+    <div class="row">
+        <nav class="navbar navbar-inverse {{ styles.theme }}">
+            <div class="col-sm-2">
+                {% if app.user %}
+                    <span class="btn-app-info">Zalogowany: <a href="{{ path('user_profil_tm') }}">{{ app.user.username }}</a></span>
+                {% endif %}
+            </div>
+            <div class="col-sm-8">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">TM</a>
+                </div>
+                {%
+                    set mainNavs = [
+                        {'path': 'user_profil_tm', 'name': 'Home'},
+                        {'path': 'task_page_tm', 'name': 'Zadania'},
+                        {'path': 'article_page_tm', 'name': 'Artykuły'},
+                        {'path': 'app_start_tm', 'name': 'Zespół'},
+                        {'path': 'app_start_tm', 'name': 'Raporty'},
+                        {'path': 'app_start_tm', 'name': 'Admin'}
+                    ]
+                %}
+                <div class="collapse navbar-collapse" id="moje-menu">
+                    <ul class="nav navbar-nav navbar-right" id="ul_nawigacja">
+                        {% for item in mainNavs %}
+                            <li {{ app.request.get('_route') == item['path'] ? ' class="active"' : ''}}><a href="{{ path(item['path']) }}">{{ item['name'] }}</a></li>
+                        {% endfor%}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-2 btn-app-info">
+                {% if app.user %}
+                    <a class=" pull-right" href="{{ path('_logout') }}">Wyloguj</a>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+    <div id="theme" class=""></div>
+{% endblock%}
+
+{% block bodyContainer %}
+
+    {% block bodyContent %}
+    {% endblock %}
+
+{% endblock %}
