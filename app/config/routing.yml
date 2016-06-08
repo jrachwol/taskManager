@@ -1,4 +1,10 @@
-tm:
-    resource: "@TmBundle/Controller/"
+app:
+    resource: "@AppBundle/Controller/"
     type:     annotation
-    prefix:   /
+
+_login_check:
+    path: /login-check
+
+_logout:
+    path: /logout
+
