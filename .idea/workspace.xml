@@ -92,8 +92,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginType.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoginType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TmBundle/Form/Type/LoginType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegisterUserType.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TmBundle/Form/Type/RegisterUserType.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -296,12 +306,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1465382101245</updated>
-      <workItem from="1465382102596" duration="2430000" />
+      <workItem from="1465382102596" duration="2501000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2430000" />
+    <option name="totallyTimeSpent" value="2501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -522,6 +532,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TmBundle/Form/Type/LoginType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TmBundle/Form/Type/RegisterUserType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
