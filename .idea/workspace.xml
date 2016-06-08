@@ -22,16 +22,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TmBundle/Controller/LoginController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RegisterController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TmBundle/Controller/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -123,8 +113,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Success.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Success.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TmBundle/Entity/Success.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataUser.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TmBundle/Entity/DataUser.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -322,12 +322,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1465382101245</updated>
-      <workItem from="1465382102596" duration="1688000" />
+      <workItem from="1465382102596" duration="1740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1688000" />
+    <option name="totallyTimeSpent" value="1740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -484,6 +484,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TmBundle/Entity/Success.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TmBundle/Entity/DataUser.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
