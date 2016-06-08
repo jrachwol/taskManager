@@ -1,15 +1,15 @@
 <?php
 
-namespace AppBundle\Manager;
+namespace TmBundle\Manager;
 
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface as Templating;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use AppBundle\Mailer\UserMailer;
-use AppBundle\Entity\User;
-use AppBundle\Exception\UserException;
+use TmBundle\Mailer\UserMailer;
+use TmBundle\Entity\User;
+use TmBundle\Exception\UserException;
 
 
 class UserManager {
@@ -72,7 +72,7 @@ protected function getRandomPassword($length = 8){
 
     public function sendResetPasswordLink($userEmail) {
 
-        $user = $this->doctrine->getRepository('AppBundle:User')
+        $user = $this->doctrine->getRepository('TmBundle:User')
                                ->findOneByEmail($userEmail);
 
         if(null === $user){
@@ -91,7 +91,7 @@ protected function getRandomPassword($length = 8){
 
         $resetUrl = $this->router->generate('user_reset_password', $urlParams, UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $emailBody = $this->templating->render('AppBundle:Email:passwordResetLink.html.twig', array(
+        $emailBody = $this->templating->render('TmBundle:Email:passwordResetLink.html.twig', array(
             'resetUrl' => $resetUrl
         ));
 
@@ -105,7 +105,7 @@ protected function getRandomPassword($length = 8){
 
     public function resetPassword($actionToken) {
 
-        $user = $this->doctrine->getRepository('AppBundle:User')
+        $user = $this->doctrine->getRepository('TmBundle:User')
                         ->findOneByActionToken($actionToken);
 
         if(null === $user){
@@ -125,7 +125,7 @@ protected function getRandomPassword($length = 8){
         $em->persist($user);
         $em->flush();
 
-        $emailBody = $this->templating->render('AppBundle:Email:newPassword.html.twig', array(
+        $emailBody = $this->templating->render('TmBundle:Email:newPassword.html.twig', array(
             'plainPassword' => $plainPassword
         ));
         
@@ -160,7 +160,7 @@ protected function getRandomPassword($length = 8){
     
         $activationUrl = $this->router->generate('user_activate_account', $urlParams, UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $emaiBody = $this->templating->render('AppBundle:Email:accountActivation.html.twig', array(
+        $emaiBody = $this->templating->render('TmBundle:Email:accountActivation.html.twig', array(
             'activationUrl' => $activationUrl
         ));
      
@@ -172,7 +172,7 @@ protected function getRandomPassword($length = 8){
 // Activate account
 
     public function activateAccount($actionToken){
-        $user = $this->doctrine->getRepository('AppBundle:User')
+        $user = $this->doctrine->getRepository('TmBundle:User')
                         ->findOneByActionToken($actionToken);
 
         if(null === $user){

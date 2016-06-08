@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace TmBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 
-use AppBundle\Exception\UserException;
-use AppBundle\Entity\User;
-use AppBundle\Form\Type\LoginType;
-use AppBundle\Form\Type\RememberPasswordType;
+use TmBundle\Exception\UserException;
+use TmBundle\Entity\User;
+use TmBundle\Form\Type\LoginType;
+use TmBundle\Form\Type\RememberPasswordType;
 
 class LoginController extends Controller {
 
@@ -86,7 +86,7 @@ class LoginController extends Controller {
             $this->get('session')->getFlashBag()->add('error', $exc->getMessage());
         }
 
-        return $this->redirect($this->generateUrl('login_task_manager'));
+        return $this->redirect($this->generateUrl('login_tm'));
     }
 
 }

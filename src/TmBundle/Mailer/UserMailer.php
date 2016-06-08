@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Mailer;
+namespace TmBundle\Mailer;
 
-use AppBundle\Entity\User;
+use TmBundle\Entity\User;
 
 
 class UserMailer {

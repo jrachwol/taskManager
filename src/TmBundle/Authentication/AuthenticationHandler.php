@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Authentication;
+namespace TmBundle\Authentication;
 
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;

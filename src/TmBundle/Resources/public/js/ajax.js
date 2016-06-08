@@ -5,14 +5,7 @@ $(document).ready(function () {
     initAccountAction();
     initSettingsAction();
     initTaskAction();
-})
-
-var lenStart, idStart,
-    lenAuth, idAuth,
-    lenProf, idProf,
-    lenAccount, idAccount,
-    lenSettings, idSettings,
-    lenTask, idTask;
+});
 
 var idStart = [
     "btn-login",
@@ -50,7 +43,6 @@ var idTask = [
     "btn-task-unsubscribe",
     "btn-task-success"
 ];
-
 
 /////////////////////////////
 
@@ -328,10 +320,8 @@ function settingsAction(e) {
         },
         complete:initSettingsAction
 
-
     });
 }
-
 
 function taskAction(e) {
     e.preventDefault();

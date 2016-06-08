@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace TmBundle\Controller;
 
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolation;
 
-use AppBundle\Form\Type\TaskType;
-use AppBundle\Entity\Task;
-use AppBundle\Entity\Subscribe;
-use AppBundle\Entity\Success;
+use TmBundle\Form\Type\TaskType;
+use TmBundle\Entity\Task;
+use TmBundle\Entity\Subscribe;
+use TmBundle\Entity\Success;
 
 class TaskController extends Controller {
 
@@ -71,7 +71,7 @@ class TaskController extends Controller {
      */
     public function editTaskAction(Request $request, $id) {
 
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Task');
+        $repo = $this->getDoctrine()->getRepository('TmBundle:Task');
         $task = $repo->find($id);
 
         if(null == $task) {
@@ -115,7 +115,7 @@ class TaskController extends Controller {
         if($request->isXmlHttpRequest()) {
 
             try {
-                $repo = $this->getDoctrine()->getRepository('AppBundle:Task');
+                $repo = $this->getDoctrine()->getRepository('TmBundle:Task');
                 $obj = $repo->find($id);
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($obj);
@@ -169,7 +169,7 @@ class TaskController extends Controller {
             }
             if($request->isXmlHttpRequest()) {
 
-                $repo = $this->getDoctrine()->getRepository('AppBundle:Task');
+                $repo = $this->getDoctrine()->getRepository('TmBundle:Task');
                 $task = $repo->find($task);
                 $user = $this->getUser();
 
@@ -203,7 +203,7 @@ class TaskController extends Controller {
 
         if($request->isXmlHttpRequest()) {
 
-            $repo = $this->getDoctrine()->getRepository('AppBundle:Subscribe');
+            $repo = $this->getDoctrine()->getRepository('TmBundle:Subscribe');
             $em = $this->getDoctrine()->getManager();
             $sub = $repo->find($task);
             $em->remove($sub);
@@ -235,7 +235,7 @@ class TaskController extends Controller {
         }
         if($request->isXmlHttpRequest()) {
 
-            $repoSub = $this->getDoctrine()->getRepository('AppBundle:Subscribe');
+            $repoSub = $this->getDoctrine()->getRepository('TmBundle:Subscribe');
             $sub = $repoSub->find($id);
             $task = $sub->getIdTask();
             $user = $sub->getIdUser();

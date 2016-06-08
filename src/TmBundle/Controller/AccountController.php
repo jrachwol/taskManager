@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace TmBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -9,13 +9,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 
-use AppBundle\Form\Type\ChangePasswordType;
-use AppBundle\Form\Type\AccountSettingsType;
-use AppBundle\Form\Type\DataUserType;
-use AppBundle\Form\Type\ThemeType;
-use AppBundle\Entity\ThemeUser;
-use AppBundle\Entity\DataUser;
-use AppBundle\Exception\UserException;
+use TmBundle\Form\Type\ChangePasswordType;
+use TmBundle\Form\Type\AccountSettingsType;
+use TmBundle\Form\Type\DataUserType;
+use TmBundle\Form\Type\ThemeType;
+use TmBundle\Entity\ThemeUser;
+use TmBundle\Entity\DataUser;
+use TmBundle\Exception\UserException;
 
 
 class AccountController extends Controller {
@@ -117,7 +117,7 @@ class AccountController extends Controller {
 
             if($request->isXmlHttpRequest()) {
 
-                $repo = $this->getDoctrine()->getRepository('AppBundle:DataUser');
+                $repo = $this->getDoctrine()->getRepository('TmBundle:DataUser');
                 $userId = $repo->findOneByIdUser($user);
 
                 $form = $this->createForm(DataUserType::class, $userId);
@@ -151,13 +151,13 @@ class AccountController extends Controller {
 
         $user = $this->getUser();
 
-        $repo = $this->getDoctrine()->getRepository('AppBundle:ThemeUser');
+        $repo = $this->getDoctrine()->getRepository('TmBundle:ThemeUser');
         $theme = $repo->findOneByIdUser($id);
 
         $themeForm = $this->createForm(ThemeType::class, $theme);
         $themeForm->handleRequest($request);
 
-        if($request->isMethod("POST")) {
+        if($request->isXmlHttpRequest()) {
 
             if($themeForm->isValid()) {
 

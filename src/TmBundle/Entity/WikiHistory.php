@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace TmBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,7 +23,7 @@ class WikiHistory {
 
 
     /**
-     * @var \AppBundle\Entity\WikiArticle
+     * @var \TmBundle\Entity\WikiArticle
      *
      * @ORM\ManyToOne(targetEntity="WikiArticle")
      *
@@ -36,9 +36,9 @@ class WikiHistory {
     private $wikiarticle;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \TmBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="TmBundle\Entity\User")
      *
      * @ORM\JoinColumn(
      *      name = "user_id",
@@ -72,11 +72,11 @@ class WikiHistory {
     /**
      * Set wikiarticle
      *
-     * @param \AppBundle\Entity\WikiArticle $wikiarticle
+     * @param \TmBundle\Entity\WikiArticle $wikiarticle
      *
      * @return Wikihistory
      */
-    public function setWikiarticle(\AppBundle\Entity\WikiArticle $wikiarticle = null)
+    public function setWikiarticle(\TmBundle\Entity\WikiArticle $wikiarticle = null)
     {
         $this->wikiarticle = $wikiarticle;
 
@@ -86,7 +86,7 @@ class WikiHistory {
     /**
      * Get wikiarticle
      *
-     * @return \AppBundle\Entity\WikiArticle
+     * @return \TmBundle\Entity\WikiArticle
      */
     public function getWikiarticle()
     {
@@ -96,11 +96,11 @@ class WikiHistory {
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \TmBundle\Entity\User $user
      *
      * @return Wikihistory
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\TmBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -110,7 +110,7 @@ class WikiHistory {
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return \TmBundle\Entity\User
      */
     public function getUser()
     {

@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace TmBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscribeRepository")
+ * @ORM\Entity()
  * @ORM\Table(name="success")
  */
 class Success {
@@ -135,11 +135,11 @@ class Success {
     /**
      * Set idUser
      *
-     * @param \AppBundle\Entity\User $idUser
+     * @param \TmBundle\Entity\User $idUser
      *
      * @return Success
      */
-    public function setIdUser(\AppBundle\Entity\User $idUser)
+    public function setIdUser(\TmBundle\Entity\User $idUser)
     {
         $this->idUser = $idUser;
 
@@ -149,7 +149,7 @@ class Success {
     /**
      * Get idUser
      *
-     * @return \AppBundle\Entity\User
+     * @return \TmBundle\Entity\User
      */
     public function getIdUser()
     {
@@ -159,11 +159,11 @@ class Success {
     /**
      * Set idTask
      *
-     * @param \AppBundle\Entity\Task $idTask
+     * @param \TmBundle\Entity\Task $idTask
      *
      * @return Success
      */
-    public function setIdTask(\AppBundle\Entity\Task $idTask)
+    public function setIdTask(\TmBundle\Entity\Task $idTask)
     {
         $this->idTask = $idTask;
 
@@ -173,7 +173,7 @@ class Success {
     /**
      * Get idTask
      *
-     * @return \AppBundle\Entity\Task
+     * @return \TmBundle\Entity\Task
      */
     public function getIdTask()
     {

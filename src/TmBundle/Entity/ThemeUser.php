@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace TmBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -142,11 +142,11 @@ class ThemeUser {
     /**
      * Set idUser
      *
-     * @param \AppBundle\Entity\User $idUser
+     * @param \TmBundle\Entity\User $idUser
      *
      * @return ThemeUser
      */
-    public function setIdUser(\AppBundle\Entity\User $idUser = null)
+    public function setIdUser(\TmBundle\Entity\User $idUser = null)
     {
         $this->idUser = $idUser;
 
@@ -156,7 +156,7 @@ class ThemeUser {
     /**
      * Get idUser
      *
-     * @return \AppBundle\Entity\User
+     * @return \TmBundle\Entity\User
      */
     public function getIdUser()
     {

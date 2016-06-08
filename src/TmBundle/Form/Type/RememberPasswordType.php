@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form\Type;
+namespace TmBundle\Form\Type;
 
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\Form\AbstractType;
@@ -34,7 +34,7 @@ class RememberPasswordType extends AbstractType {
 
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\User',
+            'data_class' => 'TmBundle\Entity\User',
             'validation_groups' => array('rememberPswd')
 
         ));

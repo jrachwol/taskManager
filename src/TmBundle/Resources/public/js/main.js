@@ -1,9 +1,9 @@
 $(document).ready(function () {
     loadGridMason();
     increment();
-    changeTheme()
-})
+    changeTheme();
 
+});
 
 function loadGridMason() {
 

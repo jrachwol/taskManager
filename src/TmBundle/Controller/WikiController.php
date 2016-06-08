@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace TmBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -8,9 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use AppBundle\Entity\WikiArticle;
-use AppBundle\Entity\WikiHistory;
-use AppBundle\Form\Type\WikiArticleType;
+use TmBundle\Entity\WikiArticle;
+use TmBundle\Entity\WikiHistory;
+use TmBundle\Form\Type\WikiArticleType;
 
 class WikiController extends Controller {
 
@@ -26,9 +26,9 @@ class WikiController extends Controller {
 
 public function showArticleAction(WikiArticle $article=null) {
     if(!$article)  {
-        return $this->render('AppBundle:Wiki:error_article_not_found.html.twig');
+        return $this->render('TmBundle:Wiki:error_article_not_found.html.twig');
     }
-    return $this->render('AppBundle:Wiki:wiki_article.html.twig',
+    return $this->render('TmBundle:Wiki:wiki_article.html.twig',
         ['article' => $article]
     );
 }
@@ -50,7 +50,7 @@ public function addArticleAction(Request $request) {
 
         if($form->get('preview')->isClicked()) {
 
-        return $this->render('AppBundle:Wiki:wiki_article.html.twig', array(
+        return $this->render('TmBundle:Wiki:wiki_article.html.twig', array(
             'article' => $article));
         }
 
@@ -65,7 +65,7 @@ public function addArticleAction(Request $request) {
 
     }
 
-    return $this->render('AppBundle:Wiki:add_article.html.twig', array(
+    return $this->render('TmBundle:Wiki:add_article.html.twig', array(
         'form' => $form->createView()
     ));
 }
@@ -82,7 +82,7 @@ public function addArticleAction(Request $request) {
 
 public function editArticleAction(Request $request, WikiArticle $article=null) {
     if(!$article) {
-        return $this->render('AppBundle:Wiki:error_article_not_found.html.twig');
+        return $this->render('TmBundle:Wiki:error_article_not_found.html.twig');
     }
 
     $form = $this->createForm(WikiArticleType::class, $article);
@@ -92,7 +92,7 @@ public function editArticleAction(Request $request, WikiArticle $article=null) {
 
         if($form->get('preview')->isClicked()) {
 
-            return $this->render('AppBundle:Wiki:wiki_article.html.twig', array(
+            return $this->render('TmBundle:Wiki:wiki_article.html.twig', array(
             'article' => $article));
         }
         elseif($form->get('save')->isClicked()) {
@@ -110,7 +110,7 @@ public function editArticleAction(Request $request, WikiArticle $article=null) {
         }
 
     }
-    return $this->render('AppBundle:Wiki:add_article.html.twig', array(
+    return $this->render('TmBundle:Wiki:add_article.html.twig', array(
     'form' => $form->createView()));
 }
 

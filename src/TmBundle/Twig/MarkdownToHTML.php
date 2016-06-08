@@ -1,7 +1,7 @@
 <?php
-namespace AppBundle\Twig;
+namespace TmBundle\Twig;
 
-use AppBundle\Utils\Markdown;
+use TmBundle\Utils\Markdown;
 
 class MarkdownToHTML extends \Twig_Extension
 {

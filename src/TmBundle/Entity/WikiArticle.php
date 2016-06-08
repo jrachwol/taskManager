@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace TmBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -127,11 +127,11 @@ class WikiArticle {
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param \TmBundle\Entity\User $author
      *
      * @return WikiArticle
      */
-    public function setAuthor(\AppBundle\Entity\User $author)
+    public function setAuthor(\TmBundle\Entity\User $author)
     {
         $this->author = $author;
 
@@ -141,7 +141,7 @@ class WikiArticle {
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User
+     * @return \TmBundle\Entity\User
      */
     public function getAuthor()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace TmBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -37,7 +37,7 @@ class PageController extends Controller {
      */
     public function taskPageAction(Request $request) {
 
-        $tasks = $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
+        $tasks = $this->getDoctrine()->getRepository('TmBundle:Task')->findAll();
 
         return [
             'tasks' => $tasks,
@@ -60,7 +60,7 @@ class PageController extends Controller {
 
     public function articlePageAction(Request $request) {
 
-        $article = $this->getDoctrine()->getRepository('AppBundle:WikiArticle')->findAll();
+        $article = $this->getDoctrine()->getRepository('TmBundle:WikiArticle')->findAll();
 
         return [
             'article' => $article,
@@ -83,7 +83,7 @@ class PageController extends Controller {
 
         $user = $this->getUser();
 
-        $data = $this->getDoctrine()->getRepository('AppBundle:DataUser');
+        $data = $this->getDoctrine()->getRepository('TmBundle:DataUser');
         $userData = $data->findOneByIdUser($user);
 
         return [
@@ -139,7 +139,7 @@ class PageController extends Controller {
     public function getStyles() {
 
         $user = $this->getUser();
-        $repo = $this->getDoctrine()->getRepository('AppBundle:ThemeUser');
+        $repo = $this->getDoctrine()->getRepository('TmBundle:ThemeUser');
         $theme = $repo->findOneByIdUser($user);
         return $theme;
     }
@@ -155,7 +155,7 @@ class PageController extends Controller {
 
     public function templateAction() {
 
-        return $this->render("AppBundle:Template:flashMsg.html.twig");
+        return $this->render("TmBundle:Template:flashMsg.html.twig");
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace TmBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="task")
  * @ORM\HasLifecycleCallbacks()
  */
-class Task {
+class Task
+{
 
     /**
      * @ORM\Column(type="integer")
@@ -73,7 +74,7 @@ class Task {
      */
     private $tags;
 
-    
+
 /////////////////////////////////////////////////
 
 
@@ -88,8 +89,6 @@ class Task {
 
 
 /////////////////////////////////////////////////
-
-
 
 
     /**
@@ -201,11 +200,11 @@ class Task {
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param \TmBundle\Entity\User $author
      *
      * @return Task
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setAuthor(\TmBundle\Entity\User $author = null)
     {
         $this->author = $author;
 
@@ -215,7 +214,7 @@ class Task {
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User
+     * @return \TmBundle\Entity\User
      */
     public function getAuthor()
     {
@@ -225,11 +224,11 @@ class Task {
     /**
      * Add tag
      *
-     * @param \AppBundle\Entity\Tag $tag
+     * @param \TmBundle\Entity\Tag $tag
      *
      * @return Task
      */
-    public function addTag(\AppBundle\Entity\Tag $tag)
+    public function addTag(\TmBundle\Entity\Tag $tag)
     {
         $this->tags[] = $tag;
 
@@ -239,9 +238,9 @@ class Task {
     /**
      * Remove tag
      *
-     * @param \AppBundle\Entity\Tag $tag
+     * @param \TmBundle\Entity\Tag $tag
      */
-    public function removeTag(\AppBundle\Entity\Tag $tag)
+    public function removeTag(\TmBundle\Entity\Tag $tag)
     {
         $this->tags->removeElement($tag);
     }

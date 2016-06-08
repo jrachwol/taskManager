@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace TmBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,7 +22,7 @@ class ProfilController extends Controller {
 
         $user = $this->getUser();
 
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Success');
+        $repo = $this->getDoctrine()->getRepository('TmBundle:Success');
 
         $success = $repo->findByIdUser($user );
 
@@ -42,7 +42,7 @@ class ProfilController extends Controller {
 
         $user = $this->getUser();
 
-        $tasks = $this->getDoctrine()->getManager()->getRepository('AppBundle:Subscribe');
+        $tasks = $this->getDoctrine()->getManager()->getRepository('TmBundle:Subscribe');
 
         $rows = $tasks->findByIdUser($user);
 
@@ -97,7 +97,7 @@ class ProfilController extends Controller {
 
         $idUser = $this->getUser();
 
-        $article = $this->getDoctrine()->getRepository('AppBundle:WikiArticle');
+        $article = $this->getDoctrine()->getRepository('TmBundle:WikiArticle');
 
         $rows = $article->findByAuthor($idUser);
 
