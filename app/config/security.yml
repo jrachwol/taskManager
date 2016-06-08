@@ -1,24 +1,41 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
-
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    encoders:
+        AppBundle\Entity\User: 
+            algorithm: bcrypt
+    role_hierarchy:
+        ROLE_EDITOR:    ROLE_USER
+        ROLE_ADMIN:       [ROLE_EDITOR, ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_EDITOR, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     providers:
-        in_memory:
-            memory: ~
-
+        task_manager:
+            entity: 
+                class: TmBundle:User
+                property: username
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        main:
+        task_manager_security: 
+            switch_user: true
+            pattern:    ^/  
             anonymous: ~
-            # activate different ways to authenticate
+            form_login:
+                check_path: _login_check
+                login_path: login_tm
+                success_handler: authentication_handler
+                failure_handler: authentication_handler
+                default_target_path: user_profil_tm
+                username_parameter: login[username]
+                password_parameter: login[password]
+            logout:
+                path:   _logout
+                target: app_start_tm
+            remember_me:
+                secret:      '%secret%'
+                lifetime: 31536000 
+                path:     /
+                domain:   ~
+                remember_me_parameter: login[remember_me]
+    access_control:
+          - { path: ^/user-account, roles: ROLE_USER }
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
