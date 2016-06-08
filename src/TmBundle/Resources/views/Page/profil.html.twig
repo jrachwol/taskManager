@@ -1,0 +1,57 @@
+{% extends "AppBundle:Template:navbar.html.twig" %}
+
+{% block bodyContainer %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 body-content-profil">
+            {%
+                set mainMenu = [
+                    {'path': 'user_profil_tm', 'name': 'Profil'},
+                    {'path': 'user_message_tm', 'name': 'Wiadomości'},
+                    {'path': 'user_account_tm', 'name': 'Ustawienia'},
+                ]
+            %}
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <ul id="my-tabs" class="nav nav-tabs nav-justified">
+                        {% for item in mainMenu %}
+                            <li {{ app.request.get('_route') == item['path'] ? ' class="active"' : ''}}><a href="{{ path(item['path']) }}">{{ item['name'] }}</a></li>
+                        {% endfor%}
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="flash-messages col-sm-4 col-md-offset-2"></div>
+            </div>
+            <div class="row profil-content" id="dmc-content-profil">
+                {% block bodyContent %}
+                    <ul class="col-sm-2 left-panel-profil">
+                        <li><a href="{{ path('success_profil_tm') }}" id="btn-success"><i class="fa fa-trophy" aria-hidden="true"></i></a></li>
+                        <li><a href="{{ path('subscribe_profil_tm') }}" id="btn-subscribe-list"><i  class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                        <li><a href="{{ path('statistic_profil_tm') }}" id="btn-statistic"><i class="fa fa-bar-chart" aria-hidden="true"></i></a></li>
+                        <li><a href="{{ path('article_profil_tm') }}" id="btn-article"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li>
+                    </ul>
+
+                    <div class="col-sm-2 avatar-profil">
+                        <img src="{{ asset(user.avatar) }}" class="thumbnail img-rounded img-responsive" alt="">
+                    </div>
+
+                    <div class="col-sm-8">
+                        <h2>{{ userData.name }} {{ userData.lastName }}</h2>
+                        <a href="{{ userData.www }}">{{ userData.www }}</a>
+
+                        <div class="row">
+                            <div id="option-profil" class="col-sm-12 loader-profil">
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+

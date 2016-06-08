@@ -1,0 +1,81 @@
+{% extends "AppBundle:Template:navbar.html.twig" %}
+
+{% block bodyContent %}
+<div class="container-fluid">
+	<div id="task-content">
+		<div class="row">
+			<div class="col-md-2">
+				<h2>Aktualnie</h2>
+			</div>
+			<div class="col-md-4">
+				<h2></h2>
+			</div>
+			<div class="col-md-4">
+				<h2></h2>
+			</div>
+			<div class="col-md-2">
+				<h2>Chmurka Tagów</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="flash-messages col-sm-4 col-md-offset-2"></div>
+		</div>
+		<article id="list_task" class="col-md-8 col-md-offset-2">
+			<h1>Lista Zadań</h1>
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Autor</th>
+						<th>Zadanie</th>
+						<th>Poziom</th>
+						<th>Wyjaśnienie</th>
+						<th>Data</th>
+						<th>Opcje</th>
+					</tr>
+				</thead>
+
+				<tbody>
+				{% for task in tasks %}
+					<tr>
+						<td>{{ task.id }}</td>
+						<td>{{ task.author.username }}</td>
+						<td>{{ task.title }}</td>
+						<td>{{ task.level }}</td>
+						<td>{{ task.description }}</td>
+						<td>{{ task.date | date('d.m.Y, H:m') }}</td>
+						<td class="task-btn-action">
+							<a class="btn-task-subscribe btn btn-sm btn-success" href="{{ path('subscribe_task_tm', {'task': task.id}) }}">Zapisz się</a>
+							<a class="btn btn-sm btn-primary" href="{{ path('edit_task_tm', {'id': task.id}) }}" data-toggle="modal" data-target="#editTask">Edytuj</a>
+							<a class="btn-task-delete btn btn-sm btn-danger" href="{{ path('remove_task_tm', {'id': task.id }) }}">Usuń</a>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</article>
+		<div class="row">
+			<div class="col-md-2 col-md-offset-5">
+				<a id="new-task" class="btn btn-primary btn-lg" href="{{ path('add_task_tm') }}" data-toggle="modal" data-target="#addTask" >Dodaj Zadanie</a>
+			</div>
+		</div>
+
+
+		<!-- Modal -->
+
+		<div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="editTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock%}

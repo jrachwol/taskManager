@@ -1,0 +1,32 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block headerContainer %}
+{% endblock %}
+
+{% block bodyContainer %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="logo-header">Task Manager</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="init-wrapper col-sm-12">
+				<div class="init-btn-box">
+					<a id="btn-login" href="{{ path('login_tm') }}" class="button button--winona button--border button--text button--inverted button--size" data-text="Zaloguj"><span>Zaloguj</span></a>
+					<a id="btn-register" href="{{ path('register_tm') }}" class="button button--winona button--border button--text button--inverted button--size" data-text="Zarejestruj"><span>Zarejestruj</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="row wrap-loader">
+			<div class='loader-start'>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3 flash-messages">
+			</div>
+		</div>
+		<div id="init-content">
+		</div>
+	</div>
+{% endblock %}
