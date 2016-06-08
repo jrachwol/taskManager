@@ -1,0 +1,25 @@
+<div class="row account-content">
+    <div class="col-sm-3">
+        {{ form_start(accountSettingsForm, {'action': path('settings_profil_tm')}) }}
+
+        <div class="avatar">
+            <img src="{{ asset(user.avatar) }}" class="thumbnail img-rounded img-responsive" alt="">
+        </div>
+
+        {{ form_row(accountSettingsForm.avatarFile) }}
+
+        {{ form_end(accountSettingsForm) }}
+    </div>
+
+    <div class="col-sm-6 col-sm-offset-3">
+        {{ form(changePasswordForm, {'action': path('settings_profil_tm')}) }}
+    </div>
+
+</div>
+
+<script>window.onload = initSettingsAction;</script>
+
+
+
+
+
