@@ -1,0 +1,8 @@
+<article class="col-md-8 col-md-offset-2 form-modal">
+
+    <h2 class="modal-header">Edytuj zadanie</h2>
+
+    {{ form(form, {'action': path('edit_task_tm', {'id': task.id})}) }}
+
+    <i class="fa fa-close" data-dismiss="modal" aria-hidden="true"></i>
+</article>
