@@ -1,9 +1,22 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    authentication_handler:
+        class: AppBundle\Authentication\AuthenticationHandler
+        public: false
+        arguments: ["@router", "@session"]
+    user_mailer:
+        class: AppBundle\Mailer\UserMailer
+        arguments: ["@mailer", "andrej.pakula@gmail.com", "task_manager"]
+    user_manager:
+        class: AppBundle\Manager\UserManager
+        arguments: ["@doctrine", "@router", "@templating", "@security.encoder_factory", "@user_mailer"]
+    markdown:
+        class: AppBundle\Utils\Markdown
+    app.twig.markdown_to_html:
+        class:     AppBundle\Twig\MarkdownToHTML
+        arguments: ['@markdown']
+        public:    false
+        tags:
+            - { name: twig.extension }
