@@ -160,6 +160,7 @@ abstract class DoctrineType extends AbstractType
                 }
 
                 $doctrineChoiceLoader = new DoctrineChoiceLoader(
+                    $this->choiceListFactory,
                     $options['em'],
                     $options['class'],
                     $options['id_reader'],

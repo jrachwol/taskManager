@@ -11,12 +11,9 @@
 
 namespace Symfony\Component\PropertyInfo\Extractor;
 
+use phpDocumentor\Reflection\ClassReflector;
 use phpDocumentor\Reflection\DocBlock;
-use phpDocumentor\Reflection\DocBlockFactory;
-use phpDocumentor\Reflection\DocBlockFactoryInterface;
-use phpDocumentor\Reflection\Types\Compound;
-use phpDocumentor\Reflection\Types\ContextFactory;
-use phpDocumentor\Reflection\Types\Null_;
+use phpDocumentor\Reflection\FileReflector;
 use Symfony\Component\PropertyInfo\PropertyDescriptionExtractorInterface;
 use Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface;
 use Symfony\Component\PropertyInfo\Type;
@@ -33,48 +30,35 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
     const MUTATOR = 2;
 
     /**
+     * @var FileReflector[]
+     */
+    private $fileReflectors = array();
+
+    /**
      * @var DocBlock[]
      */
     private $docBlocks = array();
-
-    /**
-     * @var DocBlockFactory
-     */
-    private $docBlockFactory;
-
-    /**
-     * @var ContextFactory
-     */
-    private $contextFactory;
-
-    public function __construct(DocBlockFactoryInterface $docBlockFactory = null)
-    {
-        $this->docBlockFactory = $docBlockFactory ?: DocBlockFactory::createInstance();
-        $this->contextFactory = new ContextFactory();
-    }
 
     /**
      * {@inheritdoc}
      */
     public function getShortDescription($class, $property, array $context = array())
     {
-        /** @var $docBlock DocBlock */
         list($docBlock) = $this->getDocBlock($class, $property);
         if (!$docBlock) {
             return;
         }
 
-        $shortDescription = $docBlock->getSummary();
-
-        if (!empty($shortDescription)) {
+        $shortDescription = $docBlock->getShortDescription();
+        if ($shortDescription) {
             return $shortDescription;
         }
 
         foreach ($docBlock->getTagsByName('var') as $var) {
-            $varDescription = $var->getDescription()->render();
+            $parsedDescription = $var->getParsedDescription();
 
-            if (!empty($varDescription)) {
-                return $varDescription;
+            if (isset($parsedDescription[0]) && '' !== $parsedDescription[0]) {
+                return $parsedDescription[0];
             }
         }
     }
@@ -84,13 +68,12 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
      */
     public function getLongDescription($class, $property, array $context = array())
     {
-        /** @var $docBlock DocBlock */
         list($docBlock) = $this->getDocBlock($class, $property);
         if (!$docBlock) {
             return;
         }
 
-        $contents = $docBlock->getDescription()->render();
+        $contents = $docBlock->getLongDescription()->getContents();
 
         return '' === $contents ? null : $contents;
     }
@@ -100,7 +83,6 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
      */
     public function getTypes($class, $property, array $context = array())
     {
-        /** @var $docBlock DocBlock */
         list($docBlock, $source, $prefix) = $this->getDocBlock($class, $property);
         if (!$docBlock) {
             return;
@@ -121,31 +103,8 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
         }
 
         $types = array();
-        /** @var DocBlock\Tags\Var_|DocBlock\Tags\Return_|DocBlock\Tags\Param $tag */
         foreach ($docBlock->getTagsByName($tag) as $tag) {
-            $varType = $tag->getType();
-            $nullable = false;
-
-            if (!$varType instanceof Compound) {
-                if ($varType instanceof Null_) {
-                    $nullable = true;
-                }
-
-                $type = $this->createType((string) $varType, $nullable);
-
-                if (null !== $type) {
-                    $types[] = $type;
-                }
-
-                continue;
-            }
-
-            $typeIndex = 0;
-            $varTypes = array();
-            while ($varType->has($typeIndex)) {
-                $varTypes[] = (string) $varType->get($typeIndex);
-                ++$typeIndex;
-            }
+            $varTypes = $tag->getTypes();
 
             // If null is present, all types are nullable
             $nullKey = array_search(Type::BUILTIN_TYPE_NULL, $varTypes);
@@ -176,6 +135,29 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
     }
 
     /**
+     * Gets the FileReflector associated with the class.
+     *
+     * @param \ReflectionClass $reflectionClass
+     *
+     * @return FileReflector|null
+     */
+    private function getFileReflector(\ReflectionClass $reflectionClass)
+    {
+        if (!($fileName = $reflectionClass->getFileName()) || 'hh' === pathinfo($fileName, PATHINFO_EXTENSION)) {
+            return;
+        }
+
+        if (isset($this->fileReflectors[$fileName])) {
+            return $this->fileReflectors[$fileName];
+        }
+
+        $this->fileReflectors[$fileName] = new FileReflector($fileName);
+        $this->fileReflectors[$fileName]->process();
+
+        return $this->fileReflectors[$fileName];
+    }
+
+    /**
      * Gets the DocBlock for this property.
      *
      * @param string $class
@@ -193,25 +175,21 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
 
         $ucFirstProperty = ucfirst($property);
 
-        try {
-            switch (true) {
-                case $docBlock = $this->getDocBlockFromProperty($class, $property):
-                    $data = array($docBlock, self::PROPERTY, null);
-                    break;
+        switch (true) {
+            case $docBlock = $this->getDocBlockFromProperty($class, $property):
+                $data = array($docBlock, self::PROPERTY, null);
+                break;
 
-                case list($docBlock) = $this->getDocBlockFromMethod($class, $ucFirstProperty, self::ACCESSOR):
-                    $data = array($docBlock, self::ACCESSOR, null);
-                    break;
+            case list($docBlock) = $this->getDocBlockFromMethod($class, $ucFirstProperty, self::ACCESSOR):
+                $data = array($docBlock, self::ACCESSOR, null);
+                break;
 
-                case list($docBlock, $prefix) = $this->getDocBlockFromMethod($class, $ucFirstProperty, self::MUTATOR):
-                    $data = array($docBlock, self::MUTATOR, $prefix);
-                    break;
+            case list($docBlock, $prefix) = $this->getDocBlockFromMethod($class, $ucFirstProperty, self::MUTATOR):
+                $data = array($docBlock, self::MUTATOR, $prefix);
+                break;
 
-                default:
-                    $data = array(null, null, null);
-            }
-        } catch (\InvalidArgumentException $e) {
-            $data = array(null, null, null);
+            default:
+                $data = array(null, null, null);
         }
 
         return $this->docBlocks[$propertyHash] = $data;
@@ -234,7 +212,27 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
             return;
         }
 
-        return $this->docBlockFactory->create($reflectionProperty, $this->contextFactory->createFromReflector($reflectionProperty));
+        $reflectionCLass = $reflectionProperty->getDeclaringClass();
+
+        $fileReflector = $this->getFileReflector($reflectionCLass);
+        if (!$fileReflector) {
+            return;
+        }
+
+        foreach ($fileReflector->getClasses() as $classReflector) {
+            $className = $this->getClassName($classReflector);
+
+            if ($className === $reflectionCLass->name) {
+                foreach ($classReflector->getProperties() as $propertyReflector) {
+                    // strip the $ prefix
+                    $propertyName = substr($propertyReflector->getName(), 1);
+
+                    if ($propertyName === $property) {
+                        return $propertyReflector->getDocBlock();
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -244,12 +242,11 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
      * @param string $ucFirstProperty
      * @param int    $type
      *
-     * @return array
+     * @return DocBlock|null
      */
     private function getDocBlockFromMethod($class, $ucFirstProperty, $type)
     {
         $prefixes = $type === self::ACCESSOR ? ReflectionExtractor::$accessorPrefixes : ReflectionExtractor::$mutatorPrefixes;
-        $prefix = null;
 
         foreach ($prefixes as $prefix) {
             $methodName = $prefix.$ucFirstProperty;
@@ -272,7 +269,39 @@ class PhpDocExtractor implements PropertyDescriptionExtractorInterface, Property
             return;
         }
 
-        return array($this->docBlockFactory->create($reflectionMethod, $this->contextFactory->createFromReflector($reflectionMethod)), $prefix);
+        $reflectionClass = $reflectionMethod->getDeclaringClass();
+        $fileReflector = $this->getFileReflector($reflectionClass);
+
+        if (!$fileReflector) {
+            return;
+        }
+
+        foreach ($fileReflector->getClasses() as $classReflector) {
+            $className = $this->getClassName($classReflector);
+
+            if ($className === $reflectionClass->name) {
+                if ($methodReflector = $classReflector->getMethod($methodName)) {
+                    return array($methodReflector->getDocBlock(), $prefix);
+                }
+            }
+        }
+    }
+
+    /**
+     * Gets the normalized class name (without trailing backslash).
+     *
+     * @param ClassReflector $classReflector
+     *
+     * @return string
+     */
+    private function getClassName(ClassReflector $classReflector)
+    {
+        $className = $classReflector->getName();
+        if ('\\' === $className[0]) {
+            return substr($className, 1);
+        }
+
+        return $className;
     }
 
     /**

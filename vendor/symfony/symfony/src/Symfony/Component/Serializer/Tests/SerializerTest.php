@@ -12,10 +12,6 @@
 namespace Symfony\Component\Serializer\Tests;
 
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
-use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -315,26 +311,6 @@ class SerializerTest extends \PHPUnit_Framework_TestCase
             $expectedData,
             $serializer->deserialize($jsonData, __NAMESPACE__.'\Model[]', 'json')
         );
-    }
-
-    public function testNormalizerAware()
-    {
-        $normalizerAware = $this->getMock(NormalizerAwareInterface::class);
-        $normalizerAware->expects($this->once())
-            ->method('setNormalizer')
-            ->with($this->isInstanceOf(NormalizerInterface::class));
-
-        new Serializer([$normalizerAware]);
-    }
-
-    public function testDenormalizerAware()
-    {
-        $denormalizerAware = $this->getMock(DenormalizerAwareInterface::class);
-        $denormalizerAware->expects($this->once())
-            ->method('setDenormalizer')
-            ->with($this->isInstanceOf(DenormalizerInterface::class));
-
-        new Serializer([$denormalizerAware]);
     }
 }
 

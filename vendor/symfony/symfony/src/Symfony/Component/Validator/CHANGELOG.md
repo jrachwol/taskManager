@@ -1,12 +1,6 @@
 CHANGELOG
 =========
 
-3.1.0
------
-
- * deprecated `DateTimeValidator::PATTERN` constant
- * added a `format` option to the `DateTime` constraint
-
 2.8.0
 -----
 

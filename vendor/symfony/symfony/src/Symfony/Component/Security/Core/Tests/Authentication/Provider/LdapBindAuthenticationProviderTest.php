@@ -11,13 +11,10 @@
 
 namespace Symfony\Component\Security\Core\Tests\Authentication\Provider;
 
-use Symfony\Component\Ldap\LdapInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\LdapBindAuthenticationProvider;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Ldap\Exception\ConnectionException;
-use Symfony\Component\Security\Core\User\UserCheckerInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
  * @requires extension ldap
@@ -47,14 +44,14 @@ class LdapBindAuthenticationProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function testBindFailureShouldThrowAnException()
     {
-        $userProvider = $this->getMock(UserProviderInterface::class);
-        $ldap = $this->getMock(LdapInterface::class);
+        $userProvider = $this->getMock('Symfony\Component\Security\Core\User\UserProviderInterface');
+        $ldap = $this->getMock('Symfony\Component\Ldap\LdapClientInterface');
         $ldap
             ->expects($this->once())
             ->method('bind')
             ->will($this->throwException(new ConnectionException()))
         ;
-        $userChecker = $this->getMock(UserCheckerInterface::class);
+        $userChecker = $this->getMock('Symfony\Component\Security\Core\User\UserCheckerInterface');
 
         $provider = new LdapBindAuthenticationProvider($userProvider, $userChecker, 'key', $ldap);
         $reflection = new \ReflectionMethod($provider, 'checkAuthentication');
@@ -65,15 +62,15 @@ class LdapBindAuthenticationProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testRetrieveUser()
     {
-        $userProvider = $this->getMock(UserProviderInterface::class);
+        $userProvider = $this->getMock('Symfony\Component\Security\Core\User\UserProviderInterface');
         $userProvider
             ->expects($this->once())
             ->method('loadUserByUsername')
             ->with('foo')
         ;
-        $ldap = $this->getMock(LdapInterface::class);
+        $ldap = $this->getMock('Symfony\Component\Ldap\LdapClientInterface');
 
-        $userChecker = $this->getMock(UserCheckerInterface::class);
+        $userChecker = $this->getMock('Symfony\Component\Security\Core\User\UserCheckerInterface');
 
         $provider = new LdapBindAuthenticationProvider($userProvider, $userChecker, 'key', $ldap);
         $reflection = new \ReflectionMethod($provider, 'retrieveUser');

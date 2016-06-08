@@ -1,5 +1,5 @@
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@TmBundle/Controller/"
     type:     annotation
 
 _login_check:

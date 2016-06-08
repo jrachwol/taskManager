@@ -45,7 +45,6 @@ class AddSecurityVotersPass implements CompilerPassInterface
             throw new LogicException('No security voters found. You need to tag at least one with "security.voter"');
         }
 
-        $adm = $container->getDefinition($container->hasDefinition('debug.security.access.decision_manager') ? 'debug.security.access.decision_manager' : 'security.access.decision_manager');
-        $adm->addMethodCall('setVoters', array(array_values($voters)));
+        $container->getDefinition('security.access.decision_manager')->addMethodCall('setVoters', array(array_values($voters)));
     }
 }

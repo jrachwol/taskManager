@@ -14,7 +14,6 @@ class ComposerStaticInit5b9d1cffa82704c6a96e56bbdc329bbd
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
-        '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -42,10 +41,6 @@ class ComposerStaticInit5b9d1cffa82704c6a96e56bbdc329bbd
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
         ),
-        'P' => 
-        array (
-            'Psr\\Cache\\' => 10,
-        ),
         'M' => 
         array (
             'Monolog\\' => 8,
@@ -53,6 +48,14 @@ class ComposerStaticInit5b9d1cffa82704c6a96e56bbdc329bbd
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
+        ),
+        'F' => 
+        array (
+            'FOS\\UserBundle\\' => 15,
+        ),
+        'E' => 
+        array (
+            'Elao\\WebProfilerExtraBundle\\' => 28,
         ),
         'D' => 
         array (
@@ -137,10 +140,6 @@ class ComposerStaticInit5b9d1cffa82704c6a96e56bbdc329bbd
         array (
             0 => __DIR__ . '/..' . '/sensio/distribution-bundle',
         ),
-        'Psr\\Cache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/cache/src',
-        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -148,6 +147,14 @@ class ComposerStaticInit5b9d1cffa82704c6a96e56bbdc329bbd
         'Incenteev\\ParameterHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
+        ),
+        'FOS\\UserBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
+        ),
+        'Elao\\WebProfilerExtraBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/elao/web-profiler-extra-bundle',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -195,6 +202,10 @@ class ComposerStaticInit5b9d1cffa82704c6a96e56bbdc329bbd
             'Psr\\Log\\' => 
             array (
                 0 => __DIR__ . '/..' . '/psr/log',
+            ),
+            'Parsedown' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown',
             ),
         ),
         'D' => 

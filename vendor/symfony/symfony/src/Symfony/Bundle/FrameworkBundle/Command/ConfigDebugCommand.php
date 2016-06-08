@@ -56,10 +56,12 @@ EOF
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
+        $name = $input->getArgument('name');
 
-        if (null === $name = $input->getArgument('name')) {
-            $this->listBundles($io);
-            $io->comment('Provide the name of a bundle as the first argument of this command to dump its configuration. (e.g. <comment>debug:config FrameworkBundle</comment>)');
+        if (empty($name)) {
+            $io->comment('Provide the name of a bundle as the first argument of this command to dump its configuration.');
+            $io->newLine();
+            $this->listBundles($output);
 
             return;
         }

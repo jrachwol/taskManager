@@ -145,46 +145,16 @@ class PhpDumperTest extends \PHPUnit_Framework_TestCase
         $this->assertStringEqualsFile(self::$fixturesPath.'/php/services19.php', $dumper->dump(), '->dump() dumps services with anonymous factories');
     }
 
-    public function testAddServiceIdWithUnsupportedCharacters()
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Service id "bar$" cannot be converted to a valid PHP method name.
+     */
+    public function testAddServiceInvalidServiceId()
     {
-        $class = 'Symfony_DI_PhpDumper_Test_Unsupported_Characters';
         $container = new ContainerBuilder();
         $container->register('bar$', 'FooClass');
-        $container->register('bar$!', 'FooClass');
         $dumper = new PhpDumper($container);
-        eval('?>'.$dumper->dump(array('class' => $class)));
-
-        $this->assertTrue(method_exists($class, 'getBarService'));
-        $this->assertTrue(method_exists($class, 'getBar2Service'));
-    }
-
-    public function testConflictingServiceIds()
-    {
-        $class = 'Symfony_DI_PhpDumper_Test_Conflicting_Service_Ids';
-        $container = new ContainerBuilder();
-        $container->register('foo_bar', 'FooClass');
-        $container->register('foobar', 'FooClass');
-        $dumper = new PhpDumper($container);
-        eval('?>'.$dumper->dump(array('class' => $class)));
-
-        $this->assertTrue(method_exists($class, 'getFooBarService'));
-        $this->assertTrue(method_exists($class, 'getFoobar2Service'));
-    }
-
-    public function testConflictingMethodsWithParent()
-    {
-        $class = 'Symfony_DI_PhpDumper_Test_Conflicting_Method_With_Parent';
-        $container = new ContainerBuilder();
-        $container->register('bar', 'FooClass');
-        $container->register('foo_bar', 'FooClass');
-        $dumper = new PhpDumper($container);
-        eval('?>'.$dumper->dump(array(
-            'class' => $class,
-            'base_class' => 'Symfony\Component\DependencyInjection\Tests\Fixtures\containers\CustomContainer',
-        )));
-
-        $this->assertTrue(method_exists($class, 'getBar2Service'));
-        $this->assertTrue(method_exists($class, 'getFoobar2Service'));
+        $dumper->dump();
     }
 
     /**
@@ -283,5 +253,16 @@ class PhpDumperTest extends \PHPUnit_Framework_TestCase
         $dumper = new PhpDumper($container);
 
         $this->assertEquals(file_get_contents(self::$fixturesPath.'/php/services24.php'), $dumper->dump());
+    }
+
+    public function testInlinedDefinitionReferencingServiceContainer()
+    {
+        $container = new ContainerBuilder();
+        $container->register('foo', 'stdClass')->addMethodCall('add', array(new Reference('service_container')))->setPublic(false);
+        $container->register('bar', 'stdClass')->addArgument(new Reference('foo'));
+        $container->compile();
+
+        $dumper = new PhpDumper($container);
+        $this->assertStringEqualsFile(self::$fixturesPath.'/php/services13.php', $dumper->dump(), '->dump() dumps inline definitions which reference service_container');
     }
 }

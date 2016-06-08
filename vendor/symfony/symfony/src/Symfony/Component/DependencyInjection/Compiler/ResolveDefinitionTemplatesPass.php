@@ -96,11 +96,11 @@ class ResolveDefinitionTemplatesPass implements CompilerPassInterface
      */
     private function resolveDefinition(ContainerBuilder $container, DefinitionDecorator $definition)
     {
-        if (!$container->has($parent = $definition->getParent())) {
+        if (!$container->hasDefinition($parent = $definition->getParent())) {
             throw new RuntimeException(sprintf('The parent definition "%s" defined for definition "%s" does not exist.', $parent, $this->currentId));
         }
 
-        $parentDef = $container->findDefinition($parent);
+        $parentDef = $container->getDefinition($parent);
         if ($parentDef instanceof DefinitionDecorator) {
             $id = $this->currentId;
             $this->currentId = $parent;

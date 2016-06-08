@@ -98,16 +98,11 @@ class XliffFileLoader implements LoaderInterface
             if ($notes = $this->parseNotesMetadata($translation->note, $encoding)) {
                 $metadata['notes'] = $notes;
             }
-
             if (isset($translation->target) && $translation->target->attributes()) {
                 $metadata['target-attributes'] = array();
                 foreach ($translation->target->attributes() as $key => $value) {
                     $metadata['target-attributes'][$key] = (string) $value;
                 }
-            }
-
-            if (isset($attributes['id'])) {
-                $metadata['id'] = (string) $attributes['id'];
             }
 
             $catalogue->setMetadata((string) $source, $metadata, $domain);
@@ -165,6 +160,8 @@ class XliffFileLoader implements LoaderInterface
     }
 
     /**
+     * Validates and parses the given file into a DOMDocument.
+     *
      * @param string       $file
      * @param \DOMDocument $dom
      * @param string       $schema source of the schema
@@ -219,7 +216,6 @@ class XliffFileLoader implements LoaderInterface
                 $parts = explode('/', str_replace('\\', '/', $tmpfile));
             }
         }
-
         $drive = '\\' === DIRECTORY_SEPARATOR ? array_shift($parts).'/' : '';
         $newPath = 'file:///'.$drive.implode('/', array_map('rawurlencode', $parts));
 
@@ -286,7 +282,7 @@ class XliffFileLoader implements LoaderInterface
         return '1.2';
     }
 
-    /**
+    /*
      * @param \SimpleXMLElement|null $noteElement
      * @param string|null            $encoding
      *
@@ -300,7 +296,6 @@ class XliffFileLoader implements LoaderInterface
             return $notes;
         }
 
-        /** @var \SimpleXMLElement $xmlNote */
         foreach ($noteElement as $xmlNote) {
             $noteAttributes = $xmlNote->attributes();
             $note = array('content' => $this->utf8ToCharset((string) $xmlNote, $encoding));

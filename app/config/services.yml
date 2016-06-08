@@ -3,19 +3,19 @@ parameters:
 
 services:
     authentication_handler:
-        class: AppBundle\Authentication\AuthenticationHandler
+        class: TmBundle\Authentication\AuthenticationHandler
         public: false
         arguments: ["@router", "@session"]
     user_mailer:
-        class: AppBundle\Mailer\UserMailer
+        class: TmBundle\Mailer\UserMailer
         arguments: ["@mailer", "andrej.pakula@gmail.com", "task_manager"]
     user_manager:
-        class: AppBundle\Manager\UserManager
+        class: TmBundle\Manager\UserManager
         arguments: ["@doctrine", "@router", "@templating", "@security.encoder_factory", "@user_mailer"]
     markdown:
-        class: AppBundle\Utils\Markdown
+        class: TmBundle\Utils\Markdown
     app.twig.markdown_to_html:
-        class:     AppBundle\Twig\MarkdownToHTML
+        class:     TmBundle\Twig\MarkdownToHTML
         arguments: ['@markdown']
         public:    false
         tags:

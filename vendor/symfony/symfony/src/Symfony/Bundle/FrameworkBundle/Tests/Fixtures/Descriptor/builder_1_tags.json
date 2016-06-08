@@ -8,9 +8,6 @@
             "shared": true,
             "abstract": false,
             "file": "\/path\/to\/file",
-            "calls": [
-                "setMailer"
-            ],
             "factory_service": "factory.service",
             "factory_method": "get",
             "autowire": false,
@@ -26,9 +23,6 @@
             "shared": true,
             "abstract": false,
             "file": "\/path\/to\/file",
-            "calls": [
-                "setMailer"
-            ],
             "factory_service": "factory.service",
             "factory_method": "get",
             "autowire": false,

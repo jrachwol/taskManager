@@ -19,7 +19,6 @@ namespace Symfony\Bridge\PhpUnit;
 class DeprecationErrorHandler
 {
     const MODE_WEAK = 'weak';
-    const MODE_DISABLED = 'disabled';
 
     private static $isRegistered = false;
 
@@ -68,10 +67,11 @@ class DeprecationErrorHandler
             'other' => array(),
         );
         $deprecationHandler = function ($type, $msg, $file, $line, $context) use (&$deprecations, $getMode) {
-            if (E_USER_DEPRECATED !== $type || DeprecationErrorHandler::MODE_DISABLED === $mode = $getMode()) {
+            if (E_USER_DEPRECATED !== $type) {
                 return \PHPUnit_Util_ErrorHandler::handleError($type, $msg, $file, $line, $context);
             }
 
+            $mode = $getMode();
             $trace = debug_backtrace(true);
             $group = 'other';
 

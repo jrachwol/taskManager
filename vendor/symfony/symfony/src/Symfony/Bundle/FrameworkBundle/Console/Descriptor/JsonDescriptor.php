@@ -242,14 +242,6 @@ class JsonDescriptor extends Descriptor
             }
         }
 
-        $calls = $definition->getMethodCalls();
-        if (count($calls) > 0) {
-            $data['calls'] = array();
-            foreach ($calls as $callData) {
-                $data['calls'][] = $callData[0];
-            }
-        }
-
         if (!$omitTags) {
             $data['tags'] = array();
             if (count($definition->getTags())) {

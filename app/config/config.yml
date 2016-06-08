@@ -41,7 +41,7 @@ twig:
     globals:
         app_version: "%app_version%"
     form_themes:
-        - 'AppBundle:Form:form_theme.html.twig'
+        - 'TmBundle:Form:form_theme.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -75,4 +75,4 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: TmBundle\Entity\User

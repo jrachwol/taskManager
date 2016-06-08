@@ -62,10 +62,6 @@ class XmlFileLoader extends FileLoader
                 foreach ($attribute->group as $group) {
                     $attributeMetadata->addGroup((string) $group);
                 }
-
-                if (isset($attribute['max-depth'])) {
-                    $attributeMetadata->setMaxDepth((int) $attribute['max-depth']);
-                }
             }
 
             return true;

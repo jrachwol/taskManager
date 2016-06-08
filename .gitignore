@@ -1,2 +1,12 @@
+/app/bootstrap.php.cache
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/build/
+/vendor/
 /var
-.idea/workspace.xml
+/TmBundle/Resources/public/bootstrap
+/TmBundle/Resources/public/theme
+/TmBundle/Resources/public/css
+web/uploads/
