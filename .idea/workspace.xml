@@ -22,16 +22,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WikiController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TmBundle/Controller/WikiController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TmBundle/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -112,8 +102,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThemeUser.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ThemeUser.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TmBundle/Entity/ThemeUser.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountSettingsType.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TmBundle/Form/Type/AccountSettingsType.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -241,7 +241,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
+              <option name="myItemId" value="Form" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Type" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -270,6 +274,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\taskManager\src\TmBundle\Form\Type" />
       <recent name="C:\wamp64\www\taskManager\src\TmBundle\Entity" />
       <recent name="C:\wamp64\www\taskManager\src\TmBundle" />
       <recent name="C:\wamp64\www\taskManager\src\TmBundle\Controller" />
@@ -311,12 +316,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1465382101245</updated>
-      <workItem from="1465382102596" duration="1985000" />
+      <workItem from="1465382102596" duration="2105000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1985000" />
+    <option name="totallyTimeSpent" value="2105000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -505,6 +510,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TmBundle/Entity/ThemeUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TmBundle/Form/Type/AccountSettingsType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
