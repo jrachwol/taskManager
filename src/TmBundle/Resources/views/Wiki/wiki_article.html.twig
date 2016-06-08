@@ -1,0 +1,19 @@
+<!doctype html>
+
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+
+    <title>{{article.title}} - Wiki</title>
+    <meta name="description" content="Task manager ver. {{ app_version }}">
+    <meta name="author" content="ITPendent">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+{{article.content | md2html}}
+</body>
+</html>
