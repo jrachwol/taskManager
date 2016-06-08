@@ -1,0 +1,22 @@
+
+<h3>Moje Osiągnięcia</h3>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Zadanie</th>
+        <th>Data ukończenia</th>
+        <th>Poziom</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for entry in success %}
+            <tr>
+                <td>{{ entry.idTask.title }}</td>
+                <td>{{ entry.finishedDate | date('d.m.Y, H:m') }}</td>
+                <td>{{ entry.idTask.level }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+

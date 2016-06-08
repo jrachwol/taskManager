@@ -1,0 +1,28 @@
+
+<h3>Moje Zadania</h3>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Zadanie</th>
+        <th>Data Subskrypcji</th>
+        <th>Opcje</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for entry in rows %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.idTask.title }}</td>
+            <td>{{ entry.subscribeDate | date('d.m.Y, H:m') }}</td>
+            <td>
+                <a class="btn-task-success btn btn-sm btn-success" href="{{ path('success_task_tm', {'id': entry.id }) }}">Zrobione</a>
+                <a class="btn-task-unsubscribe btn btn-sm btn-warning" href="{{ path('unsubscribe_task_tm', {'task': entry.id }) }}">Wypisz się</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

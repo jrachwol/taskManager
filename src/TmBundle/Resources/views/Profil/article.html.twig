@@ -1,0 +1,29 @@
+<h3>Moje Artykuły</h3>
+
+{% for entry in rows %}
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        {{ entry.title }}
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    {{ entry.content }}
+                    <a class="btn btn-sm btn-primary" href="{{ path('wiki_edit_article', {'title': entry.title }) }}" data-toggle="modal" data-target="#editArticle">Edytuj</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+<div class="modal fade" id="editArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

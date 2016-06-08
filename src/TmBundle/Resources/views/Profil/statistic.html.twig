@@ -1,0 +1,58 @@
+<h1>Statystyki</h1>
+<section class="statistic">
+    <div class="box">
+        <div class="container">
+            <span class="number">
+                {% for entry in subscribe %}
+                    {{ entry }}
+                {% endfor %}
+            </span>
+            <br />
+            Subskrypcje
+        </div>
+        <div class="fill speed1" style="background : #81c784; "></div>
+    </div>
+
+    <div class="box">
+        <div class="container">
+            <span class="number">
+              {% for entry in success %}
+                  {{ entry }}
+              {% endfor %}
+            </span>
+            <br />
+            Zrealizowane
+        </div>
+        <div class="fill speed2" style="background : #f69679;"></div>
+    </div>
+
+    <div class="box">
+        <div class="container">
+            <span class="number">
+                {% for entry in task %}
+                    {{ entry }}
+                {% endfor %}
+            </span>
+            <br />
+            Dodane
+        </div>
+        <div class="fill speed3" style="background : #92bafb;"></div>
+    </div>
+
+    <div class="box">
+        <div class="container">
+            <span class="number">
+                {% for entry in article %}
+                    {{ entry }}
+                {% endfor %}
+            </span>
+            <br />
+            Artykuły
+        </div>
+        <div class="fill speed4" style="background : #9b92fb;"></div>
+    </div>
+</section>
+
+
+
+
