@@ -1,12 +1,4 @@
-/app/bootstrap.php.cache
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
-/build/
 /vendor/
-/var
-/TmBundle/Resources/public/bootstrap
-/TmBundle/Resources/public/theme
-/TmBundle/Resources/public/css
-web/uploads/
+/var/
+/web/bundles/
+/web/uploads/
