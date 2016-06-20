@@ -8,7 +8,7 @@ services:
         arguments: ["@router", "@session"]
     user_mailer:
         class: TmBundle\Mailer\UserMailer
-        arguments: ["@mailer", "andrej.pakula@gmail.com", "task_manager"]
+        arguments: ["@mailer", "%mailer_sender%", "task_manager"]
     user_manager:
         class: TmBundle\Manager\UserManager
         arguments: ["@doctrine", "@router", "@templating", "@security.encoder_factory", "@user_mailer"]
