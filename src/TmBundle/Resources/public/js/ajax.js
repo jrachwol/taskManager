@@ -189,7 +189,8 @@ function registerResponse() {
             }
             $("#init-content").html(e);
             $(".flash-messages").load("/flash-message")
-        }
+        },
+        complete: initAuthentication
 
     });
 }
@@ -211,7 +212,8 @@ function rememberResponse() {
             }
             $("#init-content").html(e);
             $(".flash-messages").load("/flash-message");
-        }
+        },
+        complete: initAuthentication
 
     });
 }
