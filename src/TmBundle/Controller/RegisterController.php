@@ -113,7 +113,7 @@ class RegisterController extends Controller {
             $this->get('session')->getFlashBag()->add('error', $exc->getMessage());
         }
 
-        return $this->redirect($this->generateUrl('register_task_manager'));
+        return $this->redirect($this->generateUrl('app_start_tm'));
     }
 
 }
