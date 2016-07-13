@@ -36,7 +36,7 @@
 						<td>{{ task.date | date('d.m.Y, H:m') }}</td>
 						<td class="task-btn-action">
 							<a class="btn-task-subscribe btn btn-sm btn-success" href="{{ path('subscribe_task_tm', {'task': task.id}) }}">Zapisz się</a>
-                                                        {% if app.use.username == task.author.username %}
+                                                        {% if app.user.username == task.author.username %}
                                                             <a class="btn btn-sm btn-primary" href="{{ path('edit_task_tm', {'id': task.id}) }}" data-toggle="modal" data-target="#editTask">Edytuj</a>
                                                         {% endif %}
 							<a class="btn-task-delete btn btn-sm btn-danger" href="{{ path('remove_task_tm', {'id': task.id }) }}">Usuń</a>
